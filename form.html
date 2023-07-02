@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+        h2{
+            text-align: center;
+        }
+        .error {
+            color: red;
+        }
+
+        .form-container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 5px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .submit-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Basic Form with Validation</h2>
+
+  <div class="form-container">
+    <form id="myForm" onsubmit="validateForm(event)">
+      <div class="form-group">
+        <label class="form-label" for="name">Name:</label>
+        <input class="form-input" type="text" id="name" name="name" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="email">Email:</label>
+        <input class="form-input" type="email" id="email" name="email" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="phone">Phone Number:</label>
+        <input class="form-input" type="tel" id="phone" name="phone" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="password">Password:</label>
+        <input class="form-input" type="password" id="password" name="password" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="age">Age:</label>
+        <input class="form-input" type="number" id="age" name="age" min="18" max="100" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="gender">Gender:</label>
+        <select class="form-input" id="gender" name="gender" required>
+          <option value="">Select</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="dob">Date of Birth:</label>
+        <input class="form-input" type="date" id="dob" name="dob" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="color">Favorite Color:</label>
+        <input class="form-input" type="color" id="color" name="color" required>
+      </div>
+
+      <input class="submit-button" type="submit" value="Submit">
+    </form>
+  </div>
+  
+
+    <script>
+        function validateForm(event) {
+      event.preventDefault(); // Prevent form submission
+
+      // Get form input values
+      var name = document.getElementById('name').value;
+      var email = document.getElementById('email').value;
+      var phone = document.getElementById('phone').value;
+      var password = document.getElementById('password').value;
+      var age = document.getElementById('age').value;
+      var gender = document.getElementById('gender').value;
+      var dob = document.getElementById('dob').value;
+      var color = document.getElementById('color').value;
+
+      // Validate each field
+      var isValid = true;
+      var errorMessages = "";
+
+      if (name.trim() === "") {
+        errorMessages += "Name is required.\n";
+        isValid = false;
+      }
+
+      if (!emailIsValid(email)) {
+        errorMessages += "Invalid email format.\n";
+        isValid = false;
+      }
+
+      if (!phoneIsValid(phone)) {
+        errorMessages += "Invalid phone number format.\n";
+        isValid = false;
+      }
+
+      if (password.length < 6) {
+        errorMessages += "Password should have at least 6 characters.\n";
+        isValid = false;
+      }
+
+      if (age < 18 || age > 100) {
+        errorMessages += "Age should be between 18 and 100.\n";
+        isValid = false;
+      }
+
+      if (gender === "") {
+        errorMessages += "Gender is required.\n";
+        isValid = false;
+      }
+
+      if (dob.trim() === "") {
+        errorMessages += "Date of birth is required.\n";
+    </script>
+</body>
+
+</html>
